@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+
+# Local agent state
+traces/
+baseline.jsonl
+keys/*.priv
+
+# IDE
+.vscode/
+.idea/

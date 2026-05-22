@@ -1,0 +1,51 @@
+[project]
+name = "agenomic-codedrift"
+version = "0.1.0"
+description = "E2E test agent — measures Claude code-quality drift over a fixed benchmark"
+authors = [{ name = "Traidano", email = "dev@traidano.com" }]
+license = { text = "Apache-2.0" }
+requires-python = ">=3.12"
+dependencies = [
+  # TODO(task 5): re-enable once agenomic SDK is locally available
+  # "agenomic[langgraph,anthropic] >= 0.1.0",
+  "langgraph >= 0.2.0",
+  "anthropic >= 0.45.0",
+  "ruff >= 0.6.0",
+  "radon >= 6.0.1",
+  "bandit >= 1.7.9",
+  "pydantic >= 2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest >= 8.3.0",
+  "pytest-asyncio >= 0.24",
+  "mypy >= 1.11",
+]
+
+[project.scripts]
+agenomic-codedrift = "agenomic_codedrift.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "PL", "RUF"]
+ignore = ["PLR0913"]
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+files = ["src/agenomic_codedrift"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
