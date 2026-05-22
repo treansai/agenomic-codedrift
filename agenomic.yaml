@@ -1,0 +1,18 @@
+name: codedrift-agent
+version: 0.1.0
+description: E2E test agent — measures Claude code-quality drift over a fixed benchmark
+authors:
+  - traidano
+runtime: python
+entrypoint: agenomic_codedrift.__main__:main
+inputs:
+  schema:
+    snippets: list
+    model: string
+outputs:
+  schema:
+    drift_flags: list
+    per_metric: object
+signing:
+  algorithm: ed25519
+  key: keys/codedrift.priv

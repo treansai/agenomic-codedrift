@@ -12,6 +12,7 @@ build/
 traces/
 baseline.jsonl
 keys/*.priv
+keys/*.pub
 
 # IDE
 .vscode/
