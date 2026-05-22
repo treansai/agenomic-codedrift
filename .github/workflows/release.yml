@@ -1,0 +1,26 @@
+name: release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  bundle-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Install
+        run: pip install -e .
+      - name: Build + push bundle
+        id: push
+        env:
+          AGENOMIC_ENDPOINT:        ${{ secrets.AGENOMIC_ENDPOINT }}
+          AGENOMIC_API_KEY:         ${{ secrets.AGENOMIC_API_KEY }}
+          AGENOMIC_ORG_ID:          ${{ secrets.AGENOMIC_ORG_ID }}
+          AGENOMIC_SIGNING_KEY_B64: ${{ secrets.AGENOMIC_SIGNING_KEY_B64 }}
+        run: python scripts/build_and_push_bundle.py
+      - name: Save release_id
+        run: echo "Released ${{ steps.push.outputs.release_id }}"
