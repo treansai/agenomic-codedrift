@@ -25,7 +25,7 @@ To run the agent against a real Anthropic + Agenomic backend:
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
 export AGENOMIC_ENDPOINT=https://api.agenomic.example
-export AGENOMIC_API_KEY=alk_...
+export AGENOMIC_API_KEY=agm_...   # legacy alk_… keys also work
 make e2e
 ```
 
