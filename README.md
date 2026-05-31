@@ -57,6 +57,29 @@ in the `AGENOMIC_SIGNING_KEY_B64` GitHub secret, and pushes via
 `AgenomicClient.upload_bundle` + `create_release`. The resulting
 release id is exported as `AGENOMIC_RELEASE_ID` for the drift cron.
 
+## Regenerating `agenomic.yaml`
+
+`agenomic.yaml` in this repo is hand-maintained but can be regenerated
+or kept in sync with the rest of the codebase via the
+repo-aware `agm init` and `agm update`:
+
+```bash
+# first time, from the repo root
+agm init . --dry-run --format yaml   # preview what would be detected
+agm init .                           # write genome.yaml, agent.lock.yaml, ...
+
+# after any dependency / model / entrypoint change
+agm update --step "add-security-scan"
+```
+
+`agm init` reads `pyproject.toml` (and the git remote, README, etc.)
+and fills `genome.yaml` with the real project name, the LangGraph +
+Anthropic runtime, and the `ruff` / `radon` / `bandit` tools instead
+of placeholders. `agm update` re-runs detection and creates one
+git commit per development step. See
+[`agenomic-cli/docs/init-and-update.md`](https://github.com/treansai/agenomic-cli/blob/main/docs/init-and-update.md)
+for the full detection rules and merge semantics.
+
 ## License
 
 Apache-2.0.
