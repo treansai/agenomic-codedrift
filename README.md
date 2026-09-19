@@ -59,4 +59,9 @@ release id is exported as `AGENOMIC_RELEASE_ID` for the drift cron.
 
 ## License
 
-Apache-2.0.
+Copyright (C) 2026 Agenomic Contributors. GNU Affero General Public License
+v3.0 (`AGPL-3.0-only`). See [LICENSE](LICENSE).
+
+This repository is part of the Agenomic Community edition. Agenomic Cloud and
+Enterprise components live in separate, private repositories and are not
+covered by this license.

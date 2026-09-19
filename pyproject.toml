@@ -3,7 +3,7 @@ name = "agenomic-codedrift"
 version = "0.1.0"
 description = "E2E test agent — measures Claude code-quality drift over a fixed benchmark"
 authors = [{ name = "Traidano", email = "dev@traidano.com" }]
-license = { text = "Apache-2.0" }
+license = { text = "AGPL-3.0-only" }
 requires-python = ">=3.12"
 dependencies = [
   # TODO(task 5): re-enable once agenomic SDK is locally available
